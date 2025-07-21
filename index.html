@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Gemini Pro + Google One</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Applying the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Lightweight gradient background */
+            background-color: #111827;
+            background-image: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+            color: #e5e7eb;
+            overflow-x: hidden; 
+        }
+
+        /* Custom gradient text */
+        .gradient-text {
+            background: linear-gradient(90deg, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* Simplified Card styles for performance */
+        .feature-card, .faq-item {
+            background-color: #1f2937; /* Solid color, no blur */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: #a78bfa;
+            transform: translateY(-5px);
+        }
+
+        /* FAQ accordion styles */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary .arrow-down { transform: rotate(180deg); }
+
+        /* Smooth scroll behavior */
+        html { scroll-behavior: smooth; }
+
+        /* Custom Payment Button Styles */
+        .payment-button-container{
+            border: 1px solid black;
+            border-radius: 15px;
+            display: flex;
+            padding: 10px;
+            width: fit-content;
+            cursor: pointer;
+            background: #000;
+            transition: all 0.2s ease;
+        }
+        .payment-button-container:hover {
+            transform: scale(1.05);
+        }
+        .payment-text-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 10px;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        .payment-logo-container{
+            width: 40px;
+            height: 40px;
+        }
+        .payment-secondary-logo-container{
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+        .payment-link{
+            text-decoration:none;
+        }
+
+        /* Style for disabled button */
+        .disabled-button {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+            filter: grayscale(80%);
+        }
+        .disabled-button:hover {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
+
+        <!-- Hero Section -->
+        <section id="hero" class="text-center pt-24 pb-16 md:pt-32 md:pb-24">
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                Get <span class="gradient-text">Gemini Pro + 2TB</span> on Your Gmail
+            </h2>
+             <p class="mt-4 text-2xl md:text-3xl font-bold text-gray-300">
+                No student-id or No longer a student?
+            </p>
+            <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-400">
+                I got you covered. I am already enjoying the benefits of gemini, So here is your chance to enjoy the shared benefits!
+            </p>
+            <div class="mt-10 flex flex-col items-center">
+                <!-- Custom Payment Button -->
+                <a id="payment-link-hero" href="https://payments.cashfree.com/forms/geminipro" target="_parent" class="payment-link">
+                    <div class="payment-button-container">
+                        <div>
+                            <img src="https://cashfree-checkoutcartimages-prod.cashfree.com/google-bard-sparkle-icon-png-2cbdd8t6hl4cg5jg_prod.png" alt="logo" class="payment-logo-container">
+                        </div>
+                        <div class="payment-text-container">
+                            <div id="payment-text-hero" style="font-family: 'Inter', sans-serif; color: #fff; margin-bottom: 5px; font-size: 16px; font-weight: 600;">
+                                Just ₹199
+                            </div>
+                            <div style="font-family: 'Inter', sans-serif; color: #aaa; font-size: 10px;">
+                                <span>Powered By Cashfree</span>
+                                <img src="https://cashfreelogo.cashfree.com/cashfreepayments/logosvgs/Group_4355.svg" alt="logo" class="payment-secondary-logo-container">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <p class="mt-4 text-sm text-gray-500">Takes less than 2 mins. No login needed.</p>
+                <p id="paused-message" class="hidden mt-4 text-lg text-yellow-400 font-semibold">Oops too many people, Check back soon!</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white">Everything you get with just one tap.</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <!-- Feature Cards -->
+                <div class="feature-card p-6 rounded-2xl"><div class="text-4xl mb-4">✨</div><h4 class="font-semibold text-lg text-white">Gemini Pro Unlocked</h4><p class="text-gray-400 text-sm">Full access to Google's most advanced AI on your account.</p></div>
+                <div class="feature-card p-6 rounded-2xl"><div class="text-4xl mb-4">☁️</div><h4 class="font-semibold text-lg text-white">2TB Google One</h4><p class="text-gray-400 text-sm">Massive storage across Gmail, Drive, and Photos.</p></div>
+                <div class="feature-card p-6 rounded-2xl"><div class="text-4xl mb-4">🎥</div><h4 class="font-semibold text-lg text-white">Veo AI Generation</h4><p class="text-gray-400 text-sm">Create stunning videos from text prompts with Veo.</p></div>
+                <div class="feature-card p-6 rounded-2xl"><div class="text-4xl mb-4">🧠</div><h4 class="font-semibold text-lg text-white">NotebookLM+</h4><p class="text-gray-400 text-sm">Plus other exclusive AI perks from Google Labs.</p></div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-16">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-white">Getting started is easy.</h3>
+            </div>
+            <div class="relative">
+                <div class="hidden sm:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-700" style="transform: translateY(-50%); z-index: -1;"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+                    <!-- Step Items -->
+                    <div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl font-bold border-2 border-pink-500">1</div><h4 class="mt-4 font-semibold text-lg text-white">Enter your Gmail</h4><p class="text-gray-400">Just the email address. Nothing else.</p></div>
+                    <div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl font-bold border-2 border-purple-500">2</div><h4 class="mt-4 font-semibold text-lg text-white">Pay ₹199 Securely</h4><p class="text-gray-400">It's a trusted payment gateway.</p></div>
+                    <div class="flex flex-col items-center"><div class="w-16 h-16 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-2xl font-bold border-2 border-teal-500">3</div><h4 class="mt-4 font-semibold text-lg text-white">Get Activated</h4><p class="text-gray-400">Enjoy the benefits in no time.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16">
+            <div class="text-center mb-12"><h3 class="text-3xl font-bold text-white">Frequently Asked Questions</h3></div>
+            <div class="max-w-2xl mx-auto space-y-4">
+                <!-- FAQ Items -->
+                <details class="faq-item p-4 rounded-lg cursor-pointer"><summary class="flex justify-between items-center font-semibold text-white">Is this legal and safe?<span class="arrow-down transition-transform duration-300">↓</span></summary><p class="mt-2 text-gray-400">Absolutely. I use verified, inactive student accounts to form a Google Family group and invite your account.</p></details>
+                <details class="faq-item p-4 rounded-lg cursor-pointer"><summary class="flex justify-between items-center font-semibold text-white">Will I lose my Google account?<span class="arrow-down transition-transform duration-300">↓</span></summary><p class="mt-2 text-gray-400">Nothing is gonna happen. The service is activated on your existing account. You never share your password or any sensitive information with me.</p></details>
+                <details class="faq-item p-4 rounded-lg cursor-pointer"><summary class="flex justify-between items-center font-semibold text-white">Can I really trust this?<span class="arrow-down transition-transform duration-300">↓</span></summary><p class="mt-2 text-gray-400">You can trust me on this. You will be part of the family group and won't be removed before the pro plan ends.</p></details>
+                <details class="faq-item p-4 rounded-lg cursor-pointer"><summary class="flex justify-between items-center font-semibold text-white">What happens after one year?<span class="arrow-down transition-transform duration-300">↓</span></summary><p class="mt-2 text-gray-400">The offer ends, that's all. The end.</p></details>
+            </div>
+        </section>
+    </div>
+
+    <!-- Sticky Footer -->
+    <footer class="fixed bottom-0 left-0 w-full bg-black/50 backdrop-blur-sm p-4 border-t border-gray-800 z-20">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+             <p class="text-white font-medium hidden sm:block">
+                Get <span class="gradient-text">Gemini Pro + Google One</span> for just ₹199
+             </p>
+             <!-- Custom Payment Button in Footer -->
+             <a id="payment-link-footer" href="https://payments.cashfree.com/forms/geminipro" target="_parent" class="payment-link">
+                <div class="payment-button-container">
+                    <div>
+                        <img src="https://cashfree-checkoutcartimages-prod.cashfree.com/google-bard-sparkle-icon-png-2cbdd8t6hl4cg5jg_prod.png" alt="logo" class="payment-logo-container" style="width: 32px; height: 32px;">
+                    </div>
+                    <div class="payment-text-container" style="margin-left: 8px; margin-right: 8px;">
+                        <div id="payment-text-footer" style="font-family: 'Inter', sans-serif; color: #fff; font-size: 14px; font-weight: 600;">
+                            Just ₹199
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // --- Remote Kill Switch for Orders ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            // !!! IMPORTANT !!!
+            // 1. Create a public GitHub Gist with a file named config.json
+            // 2. Paste this content: { "ordersEnabled": true }
+            // 3. Click "Create public gist"
+            // 4. Click the "Raw" button and copy the URL.
+            // 5. Paste the URL below to replace the placeholder.
+            const configUrl = "PASTE_YOUR_RAW_GIST_URL_HERE"; 
+
+            if (configUrl === "PASTE_YOUR_RAW_GIST_URL_HERE") {
+                console.warn("Kill switch is not configured. Please paste your Gist URL in the script.");
+                return; // Do nothing if the URL is not set
+            }
+
+            try {
+                const response = await fetch(configUrl, { cache: 'no-cache' }); // no-cache ensures you get the latest version
+                if (!response.ok) {
+                    // If the file can't be fetched, keep orders enabled by default
+                    console.error("Could not fetch remote config. Orders will remain enabled.");
+                    return;
+                }
+                const config = await response.json();
+
+                if (config.ordersEnabled === false) {
+                    disablePayments();
+                }
+
+            } catch (error) {
+                console.error("Error fetching or parsing remote config:", error);
+                // Keep orders enabled if there's an error
+            }
+        });
+
+        function disablePayments() {
+            const heroLink = document.getElementById('payment-link-hero');
+            const footerLink = document.getElementById('payment-link-footer');
+            const heroText = document.getElementById('payment-text-hero');
+            const footerText = document.getElementById('payment-text-footer');
+            const pausedMessage = document.getElementById('paused-message');
+
+            const links = [heroLink, footerLink];
+            const texts = [heroText, footerText];
+
+            links.forEach(link => {
+                if(link) {
+                    link.classList.add('disabled-button');
+                    link.removeAttribute('href'); // Remove link to prevent navigation
+                }
+            });
+
+            texts.forEach(text => {
+                if(text) {
+                    text.textContent = "Temporarily Paused";
+                }
+            });
+
+            if (pausedMessage) {
+                pausedMessage.classList.remove('hidden');
+            }
+        }
+    </script>
+
+</body>
+</html>
