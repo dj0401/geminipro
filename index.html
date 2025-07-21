@@ -58,6 +58,7 @@
             border: 1px solid black;
             border-radius: 15px;
             display: flex;
+            align-items: center;
             padding: 10px;
             width: fit-content;
             cursor: pointer;
@@ -73,7 +74,9 @@
             align-items: center;
             margin-left: 10px;
             justify-content: center;
-            margin-right: 10px;
+            /* Increased padding for a wider button */
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
         .payment-logo-container{
             width: 40px;
@@ -124,7 +127,7 @@
                             <img src="https://cashfree-checkoutcartimages-prod.cashfree.com/google-bard-sparkle-icon-png-2cbdd8t6hl4cg5jg_prod.png" alt="logo" class="payment-logo-container">
                         </div>
                         <div class="payment-text-container">
-                            <div id="payment-text-hero" style="font-family: 'Inter', sans-serif; color: #fff; margin-bottom: 5px; font-size: 16px; font-weight: 600;">
+                            <div id="payment-text-hero" style="font-family: 'Inter', sans-serif; color: #fff; margin-bottom: 5px; font-size: 20px; font-weight: 600;">
                                 Just ₹199
                             </div>
                             <div style="font-family: 'Inter', sans-serif; color: #aaa; font-size: 10px;">
@@ -194,8 +197,8 @@
                     <div>
                         <img src="https://cashfree-checkoutcartimages-prod.cashfree.com/google-bard-sparkle-icon-png-2cbdd8t6hl4cg5jg_prod.png" alt="logo" class="payment-logo-container" style="width: 32px; height: 32px;">
                     </div>
-                    <div class="payment-text-container" style="margin-left: 8px; margin-right: 8px;">
-                        <div id="payment-text-footer" style="font-family: 'Inter', sans-serif; color: #fff; font-size: 14px; font-weight: 600;">
+                    <div class="payment-text-container" style="padding-left: 1rem; padding-right: 1rem;">
+                        <div id="payment-text-footer" style="font-family: 'Inter', sans-serif; color: #fff; font-size: 16px; font-weight: 600;">
                             Just ₹199
                         </div>
                     </div>
@@ -207,23 +210,17 @@
     <script>
         // --- Remote Kill Switch for Orders ---
         document.addEventListener('DOMContentLoaded', async () => {
-            // !!! IMPORTANT !!!
-            // 1. Create a public GitHub Gist with a file named config.json
-            // 2. Paste this content: { "ordersEnabled": true }
-            // 3. Click "Create public gist"
-            // 4. Click the "Raw" button and copy the URL.
-            // 5. Paste the URL below to replace the placeholder.
-            const configUrl = "PASTE_YOUR_RAW_GIST_URL_HERE"; 
-
-            if (configUrl === "PASTE_YOUR_RAW_GIST_URL_HERE") {
-                console.warn("Kill switch is not configured. Please paste your Gist URL in the script.");
-                return; // Do nothing if the URL is not set
-            }
+            // !!! IMPORTANT - EASIER GITHUB METHOD !!!
+            // 1. In your GitHub repository, create a new file named `config.json`
+            // 2. Paste this content into the file: { "ordersEnabled": true }
+            // 3. To disable orders, change `true` to `false` and commit the change.
+            // That's it! The page will check this file automatically.
+            const configUrl = "./config.json"; 
 
             try {
-                const response = await fetch(configUrl, { cache: 'no-cache' }); // no-cache ensures you get the latest version
+                // Add a cache-busting query parameter to ensure the latest version is fetched
+                const response = await fetch(`${configUrl}?v=${new Date().getTime()}`);
                 if (!response.ok) {
-                    // If the file can't be fetched, keep orders enabled by default
                     console.error("Could not fetch remote config. Orders will remain enabled.");
                     return;
                 }
@@ -235,7 +232,6 @@
 
             } catch (error) {
                 console.error("Error fetching or parsing remote config:", error);
-                // Keep orders enabled if there's an error
             }
         });
 
